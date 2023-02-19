@@ -23,29 +23,57 @@ public static class BinaryConverter
         Run();
     }
 
-    public static string GetBinaryValue(int number)
+    private static string GetBinaryValue(int number)
     {
-        int[] values = { 128, 64, 32, 16, 8, 4, 2, 1 }; // 256 possible values
+        List<int> values = GetArray(number);
 
-        string b = "00000000";
+        string b = "";
 
-
-        for (int i = 0; i < b.Length; i++)
+        for (int i = 0; i <= values.Count; i++)
         {
+            StringBuilder sb = new StringBuilder(b);
+
+            if (i == values.Count)
+            {
+                return sb.ToString();
+            }
+
             if (number >= values[i])
             {
                 number -= values[i];
-                StringBuilder sb = new StringBuilder(b);
-                sb[i] = '1';
+                sb.Append('1');
                 b = sb.ToString();
-
-                if (number == 0)
-                {
-                    return sb.ToString();
-                }
+            }
+            else
+            {
+                sb.Append('0');
+                b = sb.ToString();
             }
         }
 
         return b.ToString();
     }
+
+    private static List<int> GetArray(int max)
+    {
+        List<int> list = new List<int>();
+
+        int currentInt = 1;
+
+        while(currentInt <= max)
+        {
+            if (currentInt < 0) // To guard against Int.MaxValue wraparound
+            {
+                return list;
+            }
+
+            list.Add(currentInt);
+            currentInt *= 2;
+        }
+
+        list.Reverse();
+
+        return list;
+    }
+   
 }
