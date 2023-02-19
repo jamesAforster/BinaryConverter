@@ -26,7 +26,11 @@ public static class BinaryConverter
 
     private static string GetBinaryValue(int number)
     {
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
         List<int> values = GetArray(number);
+        watch.Stop();
+        Console.WriteLine("That took: " + watch.ElapsedTicks);
 
         string b = "";
 
