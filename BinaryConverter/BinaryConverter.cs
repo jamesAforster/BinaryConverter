@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
+
 using System.Text;
 
 public static class BinaryConverter
@@ -26,11 +24,7 @@ public static class BinaryConverter
 
     private static string GetBinaryValue(int number)
     {
-        Stopwatch watch = new Stopwatch();
-        watch.Start();
         List<int> values = GetArray(number);
-        watch.Stop();
-        Console.WriteLine("That took: " + watch.ElapsedTicks);
 
         string b = "";
 
@@ -69,5 +63,15 @@ public static class BinaryConverter
         list.Reverse();
 
         return list;
+    }
+
+    private static List<int> GetArrayLinq(int max)
+    {
+        return Enumerable
+            .Range(0, int.MaxValue)
+            .Select(x => (int)Math.Pow(2, x))
+            .TakeWhile(x => x <= max)
+            .Reverse()
+            .ToList();
     }
 }
