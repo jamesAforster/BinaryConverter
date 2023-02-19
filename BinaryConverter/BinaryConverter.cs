@@ -15,7 +15,11 @@ public static class BinaryConverter
             Run();
         }
         
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
         string value = GetBinaryValue(result);
+        watch.Stop();
+        Console.WriteLine(watch.Elapsed);   
 
         Console.WriteLine("Oi fuck nugget: " + value);
 
@@ -26,26 +30,22 @@ public static class BinaryConverter
     {
         List<int> values = GetArray(number);
 
-        string b = "";
+        char[] array = new char[values.Count];
 
         for (int i = 0; i < values.Count; i++)
         {
-            StringBuilder sb = new StringBuilder(b);
-
             if (number >= values[i])
             {
                 number -= values[i];
-                sb.Append('1');
-                b = sb.ToString();
+                array[i] = '0';
             }
             else
             {
-                sb.Append('0');
-                b = sb.ToString();
+                array[i] = '1';
             }
         }
 
-        return b.ToString();
+        return array.ToString();
     }
 
     private static List<int> GetArray(int max)
