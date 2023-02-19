@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -15,7 +16,7 @@ public static class BinaryConverter
             Console.WriteLine("It must be an integer you twat.");
             Run();
         }
-
+        
         string value = GetBinaryValue(result);
 
         Console.WriteLine("Oi fuck nugget: " + value);
@@ -29,14 +30,9 @@ public static class BinaryConverter
 
         string b = "";
 
-        for (int i = 0; i <= values.Count; i++)
+        for (int i = 0; i < values.Count; i++)
         {
             StringBuilder sb = new StringBuilder(b);
-
-            if (i == values.Count)
-            {
-                return sb.ToString();
-            }
 
             if (number >= values[i])
             {
@@ -60,13 +56,8 @@ public static class BinaryConverter
 
         int currentInt = 1;
 
-        while(currentInt <= max)
+        while (currentInt <= max && currentInt > 0)
         {
-            if (currentInt < 0) // To guard against Int.MaxValue wraparound
-            {
-                return list;
-            }
-
             list.Add(currentInt);
             currentInt *= 2;
         }
@@ -75,5 +66,4 @@ public static class BinaryConverter
 
         return list;
     }
-   
 }
