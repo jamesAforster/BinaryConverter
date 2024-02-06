@@ -15,13 +15,9 @@ public static class BinaryConverter
             Run();
         }
         
-        Stopwatch watch = new Stopwatch();
-        watch.Start();
         string value = GetBinaryValue(result);
-        watch.Stop();
-        Console.WriteLine(watch.Elapsed);   
 
-        Console.WriteLine("Oi fuck nugget: " + value);
+        Console.WriteLine("Your binary value is: " + value);
 
         Run();
     }
