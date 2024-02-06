@@ -6,12 +6,12 @@ public static class BinaryConverter
 {
     public static void Run()
     {
-        Console.Write("Give me a number to turn into binary then you fucking idiot: ");
+        Console.Write("Please give me a number to turn into binary: ");
         string? input = Console.ReadLine();
 
         if (!int.TryParse(input, out int result))
         {
-            Console.WriteLine("It must be an integer you twat.");
+            Console.WriteLine("It must be an integer.");
             Run();
         }
         
